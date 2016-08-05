@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body,ul,li{
+            padding:0;
+            margin:0;
+            list-style:none;
+        }
+        .wrapper{
+            width:1250px;
+            height:105px;
+            font-size:0;
+            overflow:hidden;
+        }
+        .ad-spread-list{
+            position:relative;
+            width:9999px;
+            height:105px;
+            left:0;
+        }
+        .ad-spread-list > li,
+        .ad-spread-pic > a{
+            display:inline-block;
+        }
+        .ad-spread-item{
+            width:250px;
+            height:105px;
+            overflow:hidden;
+        }
+        .ad-spread-pic{
+            width:994px;
+            height:105px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <ul class="ad-spread-list">
+            <li class="ad-spread-item">
+                <div class="ad-spread-pic">
+                    <a href="#"><img src="Images/1_min.jpg" alt=""></a>
+                    <a href="#"><img src="Images/1_xl.jpg" alt=""></a>
+                </div>
+            </li>
+            <li class="ad-spread-item">
+                <div class="ad-spread-pic">
+                    <a href="#"><img src="Images/2_min.jpg" alt=""></a>
+                    <a href="#"><img src="Images/2_xl.jpg" alt=""></a>
+                </div>
+            </li>
+            <li class="ad-spread-item">
+                <div class="ad-spread-pic">
+                    <a href="#"><img src="Images/3_min.jpg" alt=""></a>
+                    <a href="#"><img src="Images/3_xl.jpg" alt=""></a>
+                </div>
+            </li>
+            <li class="ad-spread-item">
+                <div class="ad-spread-pic">
+                    <a href="#"><img src="Images/4_min.jpg" alt=""></a>
+                    <a href="#"><img src="Images/4_xl.jpg" alt=""></a>
+                </div>
+            </li>
+            <li class="ad-spread-item">
+                <div class="ad-spread-pic">
+                    <a href="#"><img src="Images/5_min.jpg" alt=""></a>
+                    <a href="#"><img src="Images/5_xl.jpg" alt=""></a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $(function(){
+            $(".ad-spread-list ").on('mouseenter',"li",function(event){ //li为触发事件元素
+                var i = $(this).index();		//获取当前目标元素的下标
+                $(this).animate({
+                    width:994,
+                },'fast');
+                if($(this).is($(':last-child'))){ //若当前元素为最后一个子元素时
+                    $(this).parents("ul").animate({
+                        left:-250 * (i-1) + "px"
+                    },'fast');
+                }else{
+                    $(this).parents("ul").animate({  //若当前元素不是最后一个子元素
+                        left:-250 * i + "px"
+                    },'fast');
+                }
+            });
+            $(".ad-spread-list ").on('mouseleave',"li",function(event){
+                $(this).animate({
+                    width:250,
+                },'fast');
+                $(this).parents("ul").animate({
+                    left:0
+                },'fast');
+            });
+
+
+//            $(".ad-spread-list>li").each(function(i){
+//                $(this).mouseenter(function(){
+//                    $(this).animate({
+//                        width:994,
+//                    },'fast');
+//                    if($(this).is($(':last-child'))){
+//                        $(this).parents("ul").animate({
+//                            left:-250 * (i-1) + "px"
+//                        },'fast');
+//                    }else{
+//                        $(this).parents("ul").animate({
+//                            left:-250 * i + "px"
+//                        },'fast');
+//                    }
+//                });
+//                $(this).mouseleave(function(){
+//                    $(this).animate({
+//                        width:250,
+//                    },'fast');
+//                    $(this).parents("ul").animate({
+//                        left:0
+//                    },'fast')
+//                })
+//            });
+
+
+        });
+
+    </script>
+</body>
+</html>
